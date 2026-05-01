@@ -16,6 +16,16 @@ Most web pages are useless noise for an LLM. A raw HTML fetch gives you navigati
 
 The result is a single string you can drop directly into an LLM prompt or vector store without any further cleaning.
 
+For example, running `webrag https://example.com` produces:
+
+```
+This domain is for use in documentation examples without needing permission. Avoid use in operations.
+
+[Learn more](https://iana.org/domains/example)
+```
+
+Clean prose, no markup, ready to use.
+
 ## Install
 
 ```bash
