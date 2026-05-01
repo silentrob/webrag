@@ -1,0 +1,51 @@
+{
+  "name": "webrag",
+  "version": "0.1.0",
+  "description": "URL → Playwright render → token-efficient Markdown for RAG / LLM context",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "bin": {
+    "webrag": "./dist/cli.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "test": "npm run build && vitest run",
+    "prepublishOnly": "npm run build"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "rag",
+    "markdown",
+    "playwright",
+    "readability",
+    "scraping",
+    "llm"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@kreuzberg/html-to-markdown-node": "2.28.2",
+    "@mozilla/readability": "^0.6.0",
+    "jsdom": "^26.0.0",
+    "ofetch": "^1.4.1",
+    "playwright": "^1.52.0"
+  },
+  "devDependencies": {
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.1"
+  }
+}
