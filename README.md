@@ -4,6 +4,18 @@ Fetch a URL with **Playwright**, extract readable article HTML with **Mozilla Re
 
 Built for **LLM / RAG context**, not crawl-the-whole-site spiders.
 
+## The Problem
+
+Most web pages are useless noise for an LLM. A raw HTML fetch gives you navigation bars, cookie banners, ad slots, footer links, and thousands of tokens of markup before a single sentence of actual content. Simple `fetch` + regex hacks fall apart on JavaScript-rendered SPAs where the real content never exists in the initial HTML response.
+
+**webrag** solves this in three steps:
+
+1. **Renders the page fully** — Playwright drives a real Chromium instance, so React, Vue, and any other JS framework hydrates completely before extraction. A hydration heuristic detects SPAs and waits for content to settle, with an optional selector escape hatch for known layouts.
+2. **Extracts only the article** — Mozilla Readability (the same engine Firefox uses for Reader Mode) strips chrome, sidebars, and boilerplate, leaving just the prose.
+3. **Converts to token-efficient Markdown** — HTML is converted to clean Markdown, keeping structure (headings, lists, code blocks) while shedding redundant tags. Images and links are optional so you can trim further.
+
+The result is a single string you can drop directly into an LLM prompt or vector store without any further cleaning.
+
 ## Install
 
 ```bash
